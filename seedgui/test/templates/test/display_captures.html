@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Captures</title>
+</head>
+<body>
+    <h1>Captures</h1>
+    {% for x in data %}
+    <img src="{{ x.photo.url }}" alt="{{x.photo.title}}">
+    <div class="caption">
+        <p>{{ x.title }}</p>
+      </div>
+    {% endfor %}
+</body>
+</html>

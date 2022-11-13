@@ -1,5 +1,5 @@
 import cv2
-
+from .models import Image
 
 class VideoCamera(object):
 	def __init__(self):
@@ -14,3 +14,14 @@ class VideoCamera(object):
 		frame_flip = cv2.flip(image,1)
 		ret, jpeg = cv2.imencode('.jpg', frame_flip)
 		return jpeg.tobytes() 
+	
+	def save_frame(self, path, title):
+		success, image = self.video.read()
+
+		frame_flip = cv2.flip(image,1)
+		cv2.imwrite(path, frame_flip)
+
+		image = Image(title = title, photo = path)
+		image.save()
+
+		
