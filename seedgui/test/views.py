@@ -6,6 +6,8 @@ import time
 from datetime import datetime
 import os
 from .models import Image
+from django.contrib.auth.decorators import login_required
+from django.contrib.admin.views.decorators import staff_member_required
 
 def index(request):
     return render(request, 'test/index.html')
@@ -18,21 +20,28 @@ def gen(camera):
 				b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
         
 
-
+@staff_member_required
 def video_feed(request):
 	return StreamingHttpResponse(gen(VideoCamera()),
 					content_type='multipart/x-mixed-replace; boundary=frame')
 
 
+@staff_member_required
 def captures(request):
+
 	camera = VideoCamera()
 	
-	for i in range(5):
+	for i in range(20):
 		camera.save_frame(title = i, path = f"./results/{i}.jpg")
 		print("Saved image")
 		time.sleep(1)
 
 
+	return render(request, 'test/captures_results.html')
+
+
+@staff_member_required
+def captures_results(request):
 	data = Image.objects.all()
 	context = {'data': data}
 
