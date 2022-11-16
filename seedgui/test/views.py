@@ -8,6 +8,8 @@ import os
 from .models import Image
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
+from datetime import datetime
+
 
 def index(request):
     return render(request, 'test/index.html')
@@ -31,8 +33,9 @@ def captures(request):
 
 	camera = VideoCamera()
 	
-	for i in range(20):
-		camera.save_frame(title = i, path = f"./results/{i}.jpg")
+	for i in range(5):
+		title = datetime.now()
+		camera.save_frame(title = title, path = f"./results/{title}.jpg")
 		print("Saved image")
 		time.sleep(1)
 
@@ -42,7 +45,7 @@ def captures(request):
 
 @staff_member_required
 def captures_results(request):
-	data = Image.objects.all()
+	data = Image.objects.filter(fecha = datetime.today())
 	context = {'data': data}
 
 	return render(request, 'test/display_captures.html', context)

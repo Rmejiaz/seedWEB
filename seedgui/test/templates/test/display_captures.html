@@ -11,7 +11,9 @@
     {% for x in data %}
     <img src="{{ x.photo.url }}" alt="{{x.photo.title}}">
     <div class="caption">
-        <p>{{ x.title }}</p>
+        <p>Titulo: {{ x.title }}</p>
+        <p>Fecha: {{ x.fecha }}</p>
+        <p>Photo: {{ x.photo }}</p>
       </div>
     {% endfor %}
 </body>

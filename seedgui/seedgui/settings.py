@@ -55,7 +55,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'test.apps.TestConfig'
+    'test.apps.TestConfig',
+    'experimentos.apps.ExperimentosConfig',
+    'seedgui.apps.SeedGuiConfig'
     
 ]
 

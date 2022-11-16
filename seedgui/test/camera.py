@@ -1,5 +1,7 @@
 import cv2
 from .models import Image
+from datetime import datetime
+
 
 class VideoCamera(object):
 	def __init__(self):
@@ -16,12 +18,13 @@ class VideoCamera(object):
 		return jpeg.tobytes() 
 	
 	def save_frame(self, path, title):
+
 		success, image = self.video.read()
 
 		frame_flip = cv2.flip(image,1)
 		cv2.imwrite(path, frame_flip)
 
-		image = Image(title = title, photo = path)
+		image = Image(title = title, photo = path, fecha = datetime.now())
 		image.save()
 
 		
