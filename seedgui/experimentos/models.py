@@ -5,12 +5,13 @@ from django.db import models
 
 class Experimento(models.Model):
     nombre = models.CharField(max_length=50)
-    fecha_inicio = models.DateTimeField()
+    fecha_inicio = models.DateTimeField(blank=True, editable = False, null = True)
     fecha_final = models.DateTimeField()
-    frecuencia = models.IntegerField()
-    cantidad_imagenes = models.IntegerField()
+    frecuencia = models.DurationField()
+    cantidad_imagenes = models.IntegerField(editable = False, null = True)
     observaciones = models.CharField(max_length=200)
     cantidad_semillas = models.IntegerField()
+    status = models.CharField(max_length=20, default = "Creado", editable = False)
 
 class Image(models.Model):
     photo = models.ImageField(upload_to='pics')

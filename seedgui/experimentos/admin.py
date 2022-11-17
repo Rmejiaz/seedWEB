@@ -4,6 +4,6 @@ from .models import Experimento
 
 
 class experimentoAdmin(admin.ModelAdmin):
-    list_display = ["nombre", "fecha_inicio"]
+    list_display = ["nombre", "fecha_inicio", "fecha_final", "status"]
 
 admin.site.register(Experimento, experimentoAdmin)
