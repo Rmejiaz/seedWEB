@@ -7,11 +7,26 @@
     <title>SeedWEB</title>
 </head>
 <body>
-    <h1>SeedWEB Index</h1>
-    <ul> 
-        <li><a href={% url 'test:index' %}> Tests</a></li>
-        <li><a href={% url 'experimentos:index' %}> Experimentos</a></li>
-        <li><a href="/admin"> Admin site</a></li>
-    </ul>
+    <div style="width: 100%;">
+        <div style="text-align: center;">
+            <h1>SeedWEB Index</h1>
+            <hr>
+        </div>
+        <div style="width: 100%; text-align: center; margin-top: 2%;">
+            <form action="{% url 'experimentos:index' %}" method="get">
+                <button style="width: 30%; margin-left: auto; margin-right: auto; background-color: gray; color: white;">Experimentos</button>
+            </form>
+        </div>
+        <div style="width: 100%; text-align: center; margin-top: 2%">
+            <form action="{% url 'test:index' %}" method="get">
+                <button style="width: 30%; margin-left: auto; margin-right: auto; background-color: gray; color: white;">Test</button>
+            </form>
+        </div>
+        <div style="width: 100%; text-align: center; margin-top: 2%">
+            <form action="{% url 'admin:index' %}" method="get">
+                <button style="width: 30%; margin-left: auto; margin-right: auto; background-color: gray; color: white;">Admin site</button>
+            </form>
+        </div>
+    </div>
 </body>
 </html>
