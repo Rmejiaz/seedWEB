@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SeedWEB</title>
+    <title>Seed Counter</title>
 </head>
 <body>
     <div style="width: 100%;">
         <div style="text-align: center;">
-            <h1>SeedWEB Index</h1>
+            <h1>Seed Counter</h1>
             <hr>
+            <h2>Menú Principal</h2>
         </div>
         <div style="width: 100%; text-align: center; margin-top: 2%;">
             <form action="{% url 'experimentos:index' %}" method="get">
@@ -27,6 +28,12 @@
                 <button style="width: 30%; margin-left: auto; margin-right: auto; background-color: gray; color: white;">Admin site</button>
             </form>
         </div>
+    </div>
+    <hr>
+    
+    <div style="width: 100%; text-align: center; margin-top: 2%;">
+        <h2>Acerca de</h2>
+        Seed Counter es un sistema que permite realizar conteos de semillas de manera automática, utilizando algoritmos de inteligencia artificial.
     </div>
 </body>
 </html>

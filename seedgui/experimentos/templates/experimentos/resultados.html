@@ -4,17 +4,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Captures</title>
+    <title>Resultados</title>
 </head>
 <body>
-    <h1>Capturas</h1>
-    {% for x in data %}
-    <img src="{{ x.photo.url }}" alt="{{x.photo.title}}">
+    <h1>Resultados {{experimento.nombre}}</h1>
+    {% for x in images %}
+    
     <div class="caption">
-        <p>Titulo: {{ x.title }}</p>
         <p>Fecha: {{ x.fecha }}</p>
-        <p>Photo: {{ x.photo }}</p>
       </div>
+    
+    <img src="{{ x.photo.url }}">
+    
     {% endfor %}
+
+
 </body>
 </html>

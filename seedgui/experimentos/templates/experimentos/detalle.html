@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experimento {{experimento.id_experimento}}</title>
+</head>
+<body>
+    <h1>Experimento {{experimento.nombre}}</h1>
+    <h2>Detalles:</h2>
+    <ul>
+        <li>id: {{experimento.id}}</li>
+        <li>Nombre: {{experimento.nombre}}</li>
+        <li>Observaciones: {{experimento.observaciones }}</li>
+        <li>Fecha inicio: {{experimento.fecha_inicio}}</li>
+        <li>Fecha fin: {{experimento.fecha_final}}</li>
+        <li>Frecuencia: {{experimento.frecuencia}}</li>
+        <li>Cantidad semillas: {{experimento.cantidad_semillas}}</li>
+        <li>Cantidad imagenes: {{experimento.cantidad_imagenes}}</li>
+        <li>Status: {{experimento.status}}</li>
+        <li>Progreso: {{experimento.progreso}}%</li>
+    </ul>
+
+    <h2>Acciones:</h2>
+
+    {% if experimento.status == 'Creado' %}
+    <ul> 
+        <li><a href="/experimentos/{{experimento.id}}/iniciar">Iniciar</a></li>
+        <li><a href= "/admin/experimentos/experimento/{{experimento.id}}/change/">Editar</a></li>
+    </ul>
+    {% endif %}
+
+    {% if experimento.status == 'Iniciado' %}
+    <ul> 
+        <li>Ver avance</li>
+        <li>Parar</li>
+    </ul>
+    {% endif %}
+
+    {% if experimento.status == 'Finalizado' %}
+    <ul> 
+        <li><a href="/experimentos/{{experimento.id}}/resultados">Ver resultados</a></li>
+    </ul>
+    {% endif %}
+
+
+</body>
+</html>
