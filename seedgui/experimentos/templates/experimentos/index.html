@@ -7,9 +7,34 @@
     <title>Menú Experimentos</title>
 </head>
 <body>
-    <h1>Menú de Experimentos</h1>
-        <li><a href="/admin/experimentos/experimento/add/"> Crear Experimento</a></li>
-        <li><a href={% url 'experimentos:lista_experimentos' %}> Ver Experimentos</a></li>
-        <li><a href="../"> Volver a Inicio</a></li>
+    <div style="width: 100%;">
+        <div style="text-align: center;">
+            <h1>Menú de Experimentos</h1>
+            <hr>
+        </div>
+        <div style="width: 100%; text-align: center; margin-top: 2%;">
+            <form action="/admin/experimentos/experimento/add/" method="get">
+                <button style="width: 30%; margin-left: auto; margin-right: auto; background-color: gray; color: white;">Crear Experimento</button>
+            </form>
+        </div>
+        <div style="width: 100%; text-align: center; margin-top: 2%">
+            <form action="{% url 'experimentos:lista_experimentos' %}" method="get">
+                <button style="width: 30%; margin-left: auto; margin-right: auto; background-color: gray; color: white;">Ver Experimentos</button>
+            </form>
+        </div>
+        <div style="width: 100%; text-align: center; margin-top: 2%">
+            <form action="../" method="get">
+                <button style="width: 30%; margin-left: auto; margin-right: auto; background-color: gray; color: white;">Volver a inicio</button>
+            </form>
+        </div>
+    </div>
+    <hr>
 </body>
 </html>
+
+
+
+
+
+
+

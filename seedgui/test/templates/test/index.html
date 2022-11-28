@@ -7,13 +7,35 @@
     <title>Test</title>
 </head>
 <body>
-    <h1>Menú de Tests</h1>
-    <ul> 
-        <li><a href={% url 'test:video_feed' %}> Test de stream de video</a></li>
-        <li><a href={% url 'test:captures' %}> Test de capturas</a></li>
-        <li><a href={% url 'test:captures_results' %}> Resultados de tests de capturas</a></li>
-        <li><a href="../"> Menú Principal</a></li>
-    </ul>
+    <div style="width: 100%;">
+        <div style="text-align: center;">
+            <h1>Menú de Tests</h1>
+            <hr>
+        </div>
+        <div style="width: 100%; text-align: center; margin-top: 2%;">
+            <form action="{% url 'test:video_feed' %}" method="get">
+                <button style="width: 30%; margin-left: auto; margin-right: auto; background-color: gray; color: white;">Test de stream de video</button>
+            </form>
+        </div>
+        <div style="width: 100%; text-align: center; margin-top: 2%">
+            <form action="{% url 'test:captures' %}" method="get">
+                <button style="width: 30%; margin-left: auto; margin-right: auto; background-color: gray; color: white;">Test de capturas</button>
+            </form>
+        </div>
+        <div style="width: 100%; text-align: center; margin-top: 2%">
+            <form action="{% url 'test:captures_results' %}" method="get">
+                <button style="width: 30%; margin-left: auto; margin-right: auto; background-color: gray; color: white;">Resultados de test de capturas</button>
+            </form>
+        </div>
+        <div style="width: 100%; text-align: center; margin-top: 2%">
+            <form action="../" method="get">
+                <button style="width: 30%; margin-left: auto; margin-right: auto; background-color: gray; color: white;">Volver a inicio</button>
+            </form>
+        </div>
+    </div>
+    <hr>
     
 </body>
 </html>
+
+
