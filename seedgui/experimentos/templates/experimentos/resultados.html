@@ -8,13 +8,18 @@
 </head>
 <body>
     <h1>Resultados {{experimento.nombre}}</h1>
-    {% for x in images %}
+    {% for x in lista %}
     
     <div class="caption">
-        <p>Fecha: {{ x.fecha }}</p>
-      </div>
+        <p>Fecha: {{ x.0.fecha }}</p>
+        <p>Germinadas: {{ x.2.germinadas }}</p>
+        <p>No germinadas: {{ x.2.no_germinadas }}</p>
+    </div>
     
-    <img src="{{ x.photo.url }}">
+    <img display="inline-block" src="{{ x.0.photo.url }}">
+    <img display="inline-block" src="{{ x.1.mask.url }}">
+
+    
     
     {% endfor %}
 

@@ -26,7 +26,7 @@ class Mask(models.Model):
     experimento = models.ForeignKey(Experimento, on_delete=models.CASCADE)
 
 class Semillas(models.Model):
-    fecha = models.DateField()
+    fecha = models.DateTimeField()
     germinadas = models.IntegerField()
     no_germinadas = models.IntegerField()
     experimento = models.ForeignKey(Experimento, on_delete=models.CASCADE)

@@ -136,3 +136,7 @@ GitHub.sublime-settings
 .history
 
 seedgui/results/*
+seedgui/images/*
+model.h5
+
+

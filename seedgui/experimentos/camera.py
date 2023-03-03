@@ -28,4 +28,6 @@ class VideoCamera(object):
 		image = self.Image(fecha = fecha, experimento=experimento, photo = path)
 		image.save()
 
+		return path
+
 		
