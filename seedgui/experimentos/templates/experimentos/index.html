@@ -5,41 +5,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menú Experimentos</title>
+    {% load static %}
+    <link rel="stylesheet" href="../../static/experimentos/styles.css" />
 </head>
 <body>
-    <div style="width: 100%;">
-        <div style="text-align: center;">
+    <div class="container center-y">
+        
             <h1>Menú de Experimentos</h1>
-            <hr>
-        </div>
-        <div style="width: 100%; text-align: center; margin-top: 2%;">
+            <hr class="lines">
+        
             <form action="/admin/experimentos/experimento/add/" method="get">
-                <button style="width: 30%; margin-left: auto; margin-right: auto; background-color: gray; color: white;">Crear Experimento</button>
+                <button>Crear Experimento</button>
             </form>
-        </div>
-        <div style="width: 100%; text-align: center; margin-top: 2%">
+        
             <form action="{% url 'experimentos:cargar_experimento' %}" method="get">
-                <button style="width: 30%; margin-left: auto; margin-right: auto; background-color: gray; color: white;">Cargar Experimento</button>
+                <button>Cargar Experimento</button>
             </form>
-        </div>
-        <div style="width: 100%; text-align: center; margin-top: 2%">
+        
             <form action="{% url 'experimentos:lista_experimentos' %}" method="get">
-                <button style="width: 30%; margin-left: auto; margin-right: auto; background-color: gray; color: white;">Ver Experimentos</button>
+                <button>Ver Experimentos</button>
             </form>
-        </div>
-        <div style="width: 100%; text-align: center; margin-top: 2%">
+        
             <form action="../" method="get">
-                <button style="width: 30%; margin-left: auto; margin-right: auto; background-color: gray; color: white;">Volver a inicio</button>
+                <button>Volver a inicio</button>
             </form>
-        </div>
+            <hr class="lines">
+    
     </div>
-    <hr>
 </body>
 </html>
-
-
-
-
-
-
-
