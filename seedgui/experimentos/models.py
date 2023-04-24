@@ -9,6 +9,7 @@ class Experimento(models.Model):
     fecha_final = models.DateTimeField()
     frecuencia = models.FloatField()
     cantidad_imagenes = models.IntegerField(editable = False, null = True)
+    imagenes_capturadas = models.IntegerField(editable=False, default=0)
     observaciones = models.CharField(max_length=200)
     cantidad_semillas = models.IntegerField()
     status = models.CharField(max_length=20, default = "Creado", editable = False)

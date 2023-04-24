@@ -25,9 +25,9 @@ class VideoCamera(object):
 		path = f"./images/{fecha.strftime('%m:%d:%Y_%H:%M:%S')}.jpg"
 		cv2.imwrite(path, frame_flip)
 
-		image = self.Image(fecha = fecha, experimento=experimento, photo = path)
-		image.save()
+		image_obj = self.Image(fecha = fecha, experimento=experimento, photo = path)
+		image_obj.save()
 
-		return path
+		return path, frame_flip
 
 		

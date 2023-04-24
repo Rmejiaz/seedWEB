@@ -4,9 +4,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Experimentos</title>
+    <title>Experimentos</title>
+    {% load static %}
+    <link rel="icon" href="{% static "seedgui/media/seed.png" %}">
     <style>
-
+        body {
+            font-family: 'Roboto', sans-serif !important;
+        }
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap');
         form button {
             min-width: 300px; 
             background-color: #4CAF50;
@@ -164,10 +169,11 @@
         <div class="card">
             <div class="status-circle {{x.status}}">
             </div>
-            <a class="card-link {{x.status}}" href="{% url 'experimentos:ver_experimento' x.id %}">
+            <a class="card-link {{x.status}}" href="{% url 'experimentos:resultados_experimento' x.id %}">
                 <h2 class="title">{{x.nombre}}</h2>
                 <p class="status">{{x.status}}</p>
                 <p class="status">{{x.progreso|floatformat:-2}} %</p>
+                <p class="status">{{x.imagenes_capturadas}}/{{x.cantidad_imagenes}}</p>
             </a>
             <div class="settings">
                 <button class="settings-btn">
@@ -182,12 +188,26 @@
             </div>
         </div>
         {% endfor %}
+        <div class="card">
+            <a class="card-link" href="/admin/experimentos/experimento/add/">
+                <h2 class="title">Crear Experimento</h2>
+                {% load static %}
+                <img src="{% static "seedgui/media/new-page.png" %}" alt="new" height=50px/>
+            </a>
+        </div>
+        <div class="card">
+            <a class="card-link" href="{% url 'experimentos:cargar_experimento'%}">
+                <h2 class="title">Cargar Experimento</h2>
+                {% load static %}
+                <img src="{% static "seedgui/media/upload.png" %}" alt="new" height=50px/>
+            </a>
+        </div>
     </div>
     <div class="container center-y">
-    <form action="{% url 'experimentos:index' %}" method="get">
-        <button>Volver atrás</button>
+    <form action="{% url 'index' %}" method="get">
+        <button>Inicio</button>
+    </form>
     </form>
     </div>
-
 </body>
 </html>

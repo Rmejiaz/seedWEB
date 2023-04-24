@@ -3,26 +3,186 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css">
+    {%load static%}
+    <link rel="icon" href="{% static "seedgui/media/seed.png" %}">
     <title>Resultados</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif !important;
+            background-color: #f2f2f2;
+        }
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap');
+        .wrapper-counter {
+            display: flex;
+            flex: row;
+            justify-content: center;
+            align-items: center;
+            align-self: center;
+            align-content: center;
+        }
+
+        .wrapper-counter img {
+            padding-right: 10px;
+        }
+
+        .wrapper-counter span {
+            font-size: 22px;
+            text-align: center;
+        }
+
+     
+        .swiper-slide {
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+
+        /* .swiper-wrapper {
+            text-align: center;
+        } */
+
+        .status-circle.Creado{
+            border-radius: 50%;
+            width: 15px;
+            height: 15px;
+            margin: 15px;
+            background-color: gray;
+        }
+
+        .status-circle.Iniciado{
+            border-radius: 50%;
+            width: 15px;
+            height: 15px;
+            margin: 15px;
+            background-color: orange;
+        }
+
+        .status-circle.Finalizado{
+            border-radius: 50%;
+            width: 15px;
+            height: 15px;
+            margin: 15px;
+            background-color: green;
+        }
+        .result-span{
+            height:50px;
+            margin-right: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            top:20px; 
+        }
+
+        form button {
+            min-width: 300px; 
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 10px;
+            border-radius: 5px;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: #BFBFBF ;
+        }
+
+    </style>
 </head>
 <body>
-    <h1>Resultados {{experimento.nombre}}</h1>
-    {% for x in lista %}
-    
-    <div class="caption">
-        <p>Fecha: {{ x.0.fecha }}</p>
-        <p>Germinadas: {{ x.2.germinadas }}</p>
-        <p>No germinadas: {{ x.2.no_germinadas }}</p>
+    <h1>{{experimento.nombre}} ({{experimento.status}})</h1>
+
+    <ul>
+        <li>Observaciones: {{experimento.observaciones }}</li>
+        <li>{{experimento.fecha_inicio}} - {{experimento.fecha_final}}</li>
+        <li>Período entre capturas: {{experimento.frecuencia}} H</li>
+        <li>Imágenes: {{experimento.imagenes_capturadas}}/{{experimento.cantidad_imagenes}}</li>
+        <li>Progreso: {{experimento.progreso|floatformat:-2}}%</li>
+    </ul>
+
+    <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+            {% for x in lista %}
+            <div class="swiper-slide">
+                <div class="caption">
+                    <p>{{ x.0.fecha }}</p>
+                    {% load static %}
+                    
+                    <div class="wrapper-counter">
+                        <img display="inline-block" src="{% static "seedgui/media/germ_seed.png" %}" alt="germinated seed" height=50px/>
+                        <span class="result-span">{{ x.2.germinadas }}</span>
+                    
+                        <img display="inline-block" src="{% static "seedgui/media/non_germ_seed.png" %}" alt="germinated seed" height=50px/>
+                        <span class="result-span">{{ x.2.no_germinadas }}</span>
+                    </div>
+                </div>
+                <img display="inline-block" src="{{ x.0.photo.url }}">
+                <img display="inline-block" src="{{ x.1.mask.url }}">
+            </div>
+            {% endfor %} 
+        </div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-pagination"></div>
     </div>
-    
-    <img display="inline-block" src="{{ x.0.photo.url }}">
-    <img display="inline-block" src="{{ x.1.mask.url }}">
 
-    
-    
-    {% endfor %}
+    {% block content %}
+    {% autoescape off %}
+        {{ plot_div }}
+    {% endautoescape %}}
+    {% endblock content %}
 
+    <div>
+        <form action="" method="get">
+            <button>Descargar Reporte</button>
+        </form>
+    
+        <form action="{% url 'experimentos:descargar_datos' experimento.id %}" method="get">
+            <button>Descargar Datos</button>
+        </form>
+    </div>
 
+    {% if experimento.status == 'Creado' %}
+
+    <div>
+        <form action="/experimentos/{{experimento.id}}/iniciar" method="get">
+            <button>Iniciar Experimeto</button>
+        </form>
+    </div>
+
+    {% endif %}
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/swiper/js/swiper.min.js"></script>
+
+    <script>
+        var swiper = new Swiper(".mySwiper", {
+        spaceBetween: 30,
+
+        effect: 'fade',
+        fadeEffect: {
+            crossFade: true
+        },
+        pagination: {
+            el: ".swiper-pagination",
+            type: "progressbar",
+            },
+
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+            },
+        observer: true, 
+        observeParents: true,
+        observeSlideChildren: true
+        });
+    </script>
 </body>
+
+
+    
 </html>
