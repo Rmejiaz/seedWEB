@@ -96,9 +96,10 @@
     <ul>
         <li>Observaciones: {{experimento.observaciones }}</li>
         <li>{{experimento.fecha_inicio}} - {{experimento.fecha_final}}</li>
-        <li>Período entre capturas: {{experimento.frecuencia}} H</li>
+        <li>Período entre capturas: {{experimento.time_interval.value}} </li>
         <li>Imágenes: {{experimento.imagenes_capturadas}}/{{experimento.cantidad_imagenes}}</li>
         <li>Progreso: {{experimento.progreso|floatformat:-2}}%</li>
+        <li>Bandeja: {{experimento.dish.number}}</li>
     </ul>
 
     <div class="swiper mySwiper">

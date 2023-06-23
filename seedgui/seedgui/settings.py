@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 import os
+from datetime import timedelta
+from celery.schedules import crontab
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -59,8 +61,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'test.apps.TestConfig',
     'experimentos.apps.ExperimentosConfig',
-    'seedgui.apps.SeedGuiConfig'
-    
+    'seedgui.apps.SeedGuiConfig',
+    'django_celery_beat',
 ]
 
 MIDDLEWARE = [
@@ -145,3 +147,15 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# Celery Broker - Redis  
+CELERY_BROKER_URL = 'redis://localhost:6379/0'  
+CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'  
+CELERY_ACCEPT_CONTENT = ['application/json']  
+CELERY_TASK_SERIALIZER = 'json'  
+CELERY_RESULT_SERIALIZER = 'json'  
+CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
+CELERY_TIMEZONE = 'EST'
+# CELERY_TASK_TRACK_STARTED = True
+# CELERY_TASK_TIME_LIMIT = 30*60

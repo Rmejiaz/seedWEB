@@ -30,4 +30,5 @@ class VideoCamera(object):
 
 		return path, frame_flip
 
-		
+	def release(self):
+		self.video.release()
