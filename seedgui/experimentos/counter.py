@@ -1,4 +1,4 @@
-import tensorflow as tf
+import tflite_runtime.interpreter as tflite
 import cv2
 import numpy as np
 
@@ -10,7 +10,7 @@ class Counter:
             self.model = tf.keras.models.load_model(model_path)
             self.type = "tf"
         elif model_path[-6:]=="tflite":
-            self.interpreter = tf.lite.Interpreter(model_path)
+            self.interpreter = tflite.Interpreter(model_path)
             self.interpreter.allocate_tensors()
             self.input_details = self.interpreter.get_input_details()
             self.output_details = self.interpreter.get_output_details()

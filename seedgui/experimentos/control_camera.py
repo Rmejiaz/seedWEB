@@ -24,6 +24,7 @@ class MoverCamara():
         self.MM_PER_STEP_Y = self.DISTANCIA_POR_VUELTA / self.PASOS_POR_VUELTA
 
         # Configuración de la Raspberry Pi GPIO
+        GPIO.cleanup()
         GPIO.setmode(GPIO.BCM)
         GPIO.setup(self.X_ENDSTOP, GPIO.IN, pull_up_down=GPIO.PUD_UP)
         GPIO.setup(self.Y_ENDSTOP, GPIO.IN, pull_up_down=GPIO.PUD_UP)
@@ -34,7 +35,7 @@ class MoverCamara():
         GPIO.setup(self.DIR_PIN_MOTOR_2, GPIO.OUT)
         GPIO.setup(self.STEP_PIN_MOTOR_2, GPIO.OUT)
         GPIO.setup(self.ENABLE_PIN_MOTOR_2, GPIO.OUT)
-
+        GPIO.setup(self.LED_PIN, GPIO.OUT)
         self.posiciones = [
                         (10, 10),  # Coordenadas para matriz[0][0]
                         (20, 15),  # Coordenadas para matriz[0][1]
@@ -177,9 +178,9 @@ class MoverCamara():
 
 
     def home(self):
-        self.y_home()
-        self.x_home()
-
+        #self.y_home()
+        #self.x_home()
+        print("Camara en home")
 
     # Movimiento de la cámara a una posición específica en mm
     def mover_camara(self, x_mm, y_mm):
@@ -195,16 +196,18 @@ class MoverCamara():
         print(x_steps,y_steps,"pasos")
     
     def pos_camara(self, pos):
-        self.mover_camara(self.posiciones[pos-1])
-
+        self.mover_camara(self.posiciones[pos-1][0], self.posiciones[pos-1][1])
+        print("Camara en posición")
 
     def release_control(self):
         GPIO.cleanup()
 
     def led_on(self):
         GPIO.output(self.LED_PIN, GPIO.HIGH)
+        print("Led prendido")
     
     def led_off(self):
         GPIO.output(self.LED_PIN, GPIO.LOW)
+        print("Led apagado")
 
 

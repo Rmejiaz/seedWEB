@@ -78,8 +78,8 @@ tensorflow==2.11.0
 tensorflow-estimator==2.11.0
 tensorflow-io-gcs-filesystem==0.31.0
 termcolor==2.2.0
-tflite-runtime @ https://github.com/hjonnala/snippets/raw/main/wheels/python3.10/tflite_runtime-2.5.0.post1-cp310-cp310-linux_x86_64.whl
 tomli==2.0.1
+tflite-runtime-nightly
 typing_extensions==4.5.0
 tzdata==2023.3
 urllib3==1.26.14
@@ -89,3 +89,4 @@ Werkzeug==2.2.3
 wrapt==1.15.0
 zope.event==4.6
 zope.interface==6.0
+RPi.GPIO

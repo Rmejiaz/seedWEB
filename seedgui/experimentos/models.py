@@ -11,7 +11,7 @@ from .enums import TimeInterval, SetupStatus
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from datetime import timedelta
-
+import os
 # class Setup(models.Model):
 #     class Meta:
 #         verbose_name = 'Setup'
@@ -59,9 +59,9 @@ class Experimento(models.Model):
     time_interval = EnumChoiceField(
         TimeInterval, default=TimeInterval.thirty_mins)
     
-    task = models.OneToOneField(
+    task = models.ForeignKey(
         PeriodicTask,
-        on_delete=models.CASCADE,
+        on_delete=models.SET_NULL,
         null=True,
         blank=True
     )
@@ -77,13 +77,14 @@ class Experimento(models.Model):
             interval=interval,
             args=json.dumps([self.id]),
             start_time=self.fecha_inicio,
-            expires = self.fecha_final #+ timedelta(seconds=5)
+            #expires = self.fecha_final + timedelta(seconds=20)
             )
         self.task.enabled = True
         self.task.save()
         print("Task created!")
         self.save()
-    
+        sudoPass = "qwerty1234"
+        os.system(f"echo {sudoPass}|sudo -S systemctl restart celery-beat") 
     @property
     def interval_schedule(self):
         if self.time_interval == TimeInterval.fifteen_mins:

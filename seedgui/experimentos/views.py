@@ -9,7 +9,6 @@ from django.utils import timezone
 from .camera import VideoCamera
 import time
 from django.contrib.admin.views.decorators import staff_member_required
-from .segmentation import count
 import cv2
 from .forms import UploadFileForm
 import plotly.express as px
